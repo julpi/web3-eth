@@ -32,6 +32,10 @@ module Web3
       def getTransactionReceipt tx_hash
         TransactionReceipt.new @web3_rpc.request("#{PREFIX}#{__method__}", [tx_hash])
       end
+      
+      def sendRawTransaction tx_hash
+        Transaction.new @web3_rpc.request("#{PREFIX}#{__method__}", [tx_hash])
+      end
 
       def contract abi
         Web3::Eth::Contract.new abi, @web3_rpc
