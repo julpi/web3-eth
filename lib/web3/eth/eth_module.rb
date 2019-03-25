@@ -29,12 +29,16 @@ module Web3
         Transaction.new @web3_rpc.request("#{PREFIX}#{__method__}", [tx_hash])
       end
 
+      def getTransactionCount address, block = 'latest'
+        from_hex @web3_rpc.request("#{PREFIX}#{__method__}", [address, block])
+      end
+
       def getTransactionReceipt tx_hash
         TransactionReceipt.new @web3_rpc.request("#{PREFIX}#{__method__}", [tx_hash])
       end
       
       def sendRawTransaction tx_hash
-        Transaction.new @web3_rpc.request("#{PREFIX}#{__method__}", [tx_hash])
+        @web3_rpc.request("#{PREFIX}#{__method__}", [tx_hash])
       end
 
       def contract abi
